@@ -129,16 +129,27 @@ const personDetails = [
 ]
 
 
-
+let currentIndex = -1;
 
 const onClickUser = (idx) => {
+    if(idx === currentIndex){
+        return;
+    }
+    currentIndex = idx;
     const userName = document.querySelector(".userName");
     const userImage = document.querySelector("#userImage");
     const active = document.querySelector(".active");
     const currentPerson = personDetails[idx];
     userName.textContent = currentPerson.name;
     userImage.src = currentPerson.img;
-    active.textContent = currentPerson.active;
+
+    const list = document.getElementById("chatBox");
+
+    while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+    }
+
+
 
 
 }
@@ -208,9 +219,7 @@ const renderContactDetails = (name) => {
 
 renderList();
 
-let getId = document.getElementById("chatlist");
 
-renderList.removeChild(getId);
 // const removeDiv = (id) => {
 //
 //     id.parentNode.removeChild("id");
